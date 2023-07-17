@@ -1,0 +1,88 @@
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensures the page takes at least the full viewport height */
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title {
+    color: #ffa500;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    color: #ffa500;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto; /* Center the form horizontally */
+  }
+  
+  label {
+    margin-top: 10px;
+  }
+  
+  input {
+    background-color: #333;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+  }
+  
+  .predictedCrop {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  button {
+    background-color: #ffa500;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #ff6600; /* Change the background color on hover */
+  }
+  p {
+    margin-top: 20px;
+  }
+  
+  /* Dark mode styles */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ffffff;
+    }
+  
+    input {
+      background-color: #1a1a1a;
+    }
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 600px) {
+    form {
+      max-width: 100%;
+    }
+  }
+  

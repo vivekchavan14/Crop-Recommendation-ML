@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crop Recommendation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+  <h1 class="title">Crop Recommendation System</h1>
+  <form id="cropForm">
+    <label for="N">N (Nitrogen):</label>
+    <input type="number" name="N" step="0.01" required>
+    <label for="P">P (Phosphorus):</label>
+    <input type="number" name="P" step="0.01" required>
+    <label for="K">K (Potassium):</label>
+    <input type="number" name="K" step="0.01" required>
+    <label for="temperature">Temperature:</label>
+    <input type="number" name="temperature" step="0.01" required>
+    <label for="humidity">Humidity:</label>
+    <input type="number" name="humidity" step="0.01" required>
+    <label for="ph">pH:</label>
+    <input type="number" name="ph" step="0.01" required>
+    <label for="rainfall">Rainfall:</label>
+    <input type="number" name="rainfall" step="0.01" required>
+    <button type="submit">Predict</button>
+  </form>
+  <p class="predictedCrop">Predicted Crop: <span id="predictedCrop"></span></p>
+</div>
+  <script>
+    const form = document.getElementById("cropForm");
+    const predictedCropElement = document.getElementById("predictedCrop");
+  
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const data = {
+        N: formData.get("N"),
+        P: formData.get("P"),
+        K: formData.get("K"),
+        temperature: formData.get("temperature"),
+        humidity: formData.get("humidity"),
+        ph: formData.get("ph"),
+        rainfall: formData.get("rainfall"),
+      };
+  
+      try {
+        const response = await fetch("http://localhost:5500/predict", {
+          method: "POST", 
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Prediction failed");
+        }
+  
+        const result = await response.json();
+        predictedCropElement.textContent = result.predictedCrop;
+      } catch (error) {
+        console.error("Error occurred during prediction:", error);
+      }
+    });
+  </script>
+  
+</body>
+</html>
